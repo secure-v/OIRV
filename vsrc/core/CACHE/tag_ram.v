@@ -1,0 +1,23 @@
+`include "params.v"
+
+module tag_ram (
+    input                    clk        ,
+    input                    rstn       ,
+    input [`ENTRY_INDEX_BUS] entry_index,
+    input                    wen        ,
+    input [`CACHE_TAG_BUS]   wdata      ,
+    output [`CACHE_TAG_BUS]  rdata      
+);
+
+    reg [`CACHE_TAG_BUS]    regs [`ENTRY_BUS];
+
+    always@(posedge clk) begin
+        if (wen)
+            regs[entry_index] <=             wdata;
+        else
+            regs[entry_index] <= regs[entry_index];
+    end
+
+    assign rdata = regs[entry_index];
+
+endmodule
