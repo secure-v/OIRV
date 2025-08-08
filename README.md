@@ -1,6 +1,11 @@
 # OIRV
 鸥逸（OI）RISC-V ~！OIRV 为开源的 RISC-V 顺序处理器核，支持配置为 RV32 或 RV64 架构，支持乘除法拓展（M）、压缩指令集拓展（C）、原子指令集拓展（A），并带有可配置的多发射选项（单/双发）以及组相联缓存。OIRV 可作为学习与研究 RISC-V 架构的入门级项目，该项目采用的开源协议为 GPL v3。
 
+## 项目依赖
+1. RISC-V GNU 工具链：riscv64-unknown-elf-gcc；
+2. Verilator 开源仿真器：https://github.com/verilator/verilator；
+3. VCD 波形查看器（任选）；
+   
 ## 项目说明
 1. 快速开始：
 ```shell
