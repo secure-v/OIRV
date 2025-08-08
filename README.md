@@ -22,6 +22,7 @@ make wave ARCH=rv64i SRC=hello
 - start：编译 RTL 仿真模型，同时编译指定的程序；
 - dump：编译 RTL 仿真模型，该模型在运行结束后导出寄存器在每个周期的值；
 - wave：编译 RTL 仿真模型，该模型在运行结束后导出仿真波形；
+- vsh：编译 RTL 仿真模型，模型在运行结束后导出仿真波形，并通过 vsh （https://github.com/secure-v/vsh.git ）进行波形显示；
 
 3. 编译参数：
 - ARCH：指定编译源程序时采用的架构，同时它也会用于指定编译 RTL 仿真模型时采用的架构（RV32 / RV64）；
