@@ -51,6 +51,11 @@ rtl-model:
 # 	mv obj_dir/Voirv ../../oirv_model
 # 	chmod +x ../../oirv_model
 
+
+wave-model:
+	${VERILATOR} --cc --exe --build --vpi --trace  test_main.cpp +define+${VDEFINE_ARGS} -CFLAGS -DDUMP_WAVE -CFLAGS -DSTOPTIME=${T} +incdir+. ../vsrc/core/*.v ../vsrc/core/MUL/*.v ../vsrc/core/DIV/*.v ../vsrc/core/CACHE/*.v -CFLAGS -DSTOPTIME=0  -CFLAGS -D${VDEFINE_ARGS} +incdir+../vsrc/core/ --top-module oirv
+
+
 dump:
 	${VERILATOR}  --cc --exe --build --vpi --trace  +define+${VDEFINE_ARGS} -CFLAGS -DSTOPTIME=${T} -CFLAGS -DDUMP -CFLAGS -CFLAGS -D${VDEFINE_ARGS} test_main.cpp +incdir+. ../vsrc/core/*.v ../vsrc/core/MUL/*.v ../vsrc/core/DIV/*.v ../vsrc/core/CACHE/*.v  +incdir+../vsrc/core/ --top-module oirv
 # 	mv obj_dir/Voirv ../../oirv_model
@@ -67,6 +72,10 @@ dump:
 
 
 start: ./build/${SRC}.bin rtl-model
+	./obj_dir/Voirv $<
+
+
+wave: ./build/${SRC}.bin wave-model
 	./obj_dir/Voirv $<
 
 
