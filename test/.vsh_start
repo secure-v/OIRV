@@ -1,0 +1,22 @@
+alias create save history "|" sed 's/^ *[0-9]*[ ]*//' ">" .vsh_start_$(date +"%Y_%m_%d_%H_%M_%S")
+load oirv_wave.vcd
+cm TOP
+cm oirv
+
+add clk
+sfl
+add instr_addr_wb
+add -fgr instr_dc
+add -fgr instr_ex
+add -fgr instr_ex2
+add -fgr instr_mem
+add -fgr instr_wb
+bd -arv64 -sinstr_dc
+bd -arv64 -sinstr_ex
+bd -arv64 -sinstr_ex2
+bd -arv64 -sinstr_mem
+bd -arv64 -sinstr_wb
+t 1000
+show
+
+e
