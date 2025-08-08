@@ -3,7 +3,7 @@
 
 ## 项目依赖
 1. RISC-V GNU 工具链：riscv64-unknown-elf-gcc；
-2. Verilator 开源仿真器：https://github.com/verilator/verilator；
+2. Verilator 开源仿真器：https://github.com/verilator/verilator.git ；
 3. VCD 波形查看器（任选）；
    
 ## 项目说明
@@ -29,7 +29,10 @@ make wave ARCH=rv64i SRC=hello
 - SRC：指定源程序的名称（不需要添加后缀，如 SRC=addi、SRC=fdiv 等）；
 - T：指定仿真模型运行的最大周期数，默认值为 0（模型将一直保持运行）；
 
-4. 项目结构：
+4. RTL 配置选项（vsrc/core/params.v）：
+- VERILATOR_SIM：该宏定义设置时，不启用乘除法器的具体实现（仿真速度会降低 1 个数量级）；
+  
+5. 项目结构：
 - test 目录：包含仿真模型的测试平台文件（test_main.cpp）、AXI4 接口文件（axi4_mem.cpp，参考开源项目：https://github.com/secure-v/AXI4-CPP-BFM.git ）以及程序源文件（c、asm_rv32、asm_rv64 目录）、启动脚本文件（bare.lds）、构建脚本文件（Makefile）；
 - vsrc/core 目录：包含处理器核的全部 verilog 文件，其中 CACHE 为缓存相关文件、DIV 为除法器相关文件、MUL 为乘法器相关文件。
 
