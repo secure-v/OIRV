@@ -16,7 +16,7 @@ bd -arv64 -sinstr_ex
 bd -arv64 -sinstr_ex2
 bd -arv64 -sinstr_mem
 bd -arv64 -sinstr_wb
-t 1000
+t 1234
 show
 
 e
