@@ -80,6 +80,6 @@ wave: ./build/${SRC}.bin wave-model
 
 
 clean:
-	rm -rf obj_dir dump.* ./build *.vcd *.log
+	rm -rf obj_dir dump.* ./build *.vcd *.log .vsh_*
 	
 .PHONY: clean
