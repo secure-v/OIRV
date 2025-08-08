@@ -78,6 +78,8 @@ start: ./build/${SRC}.bin rtl-model
 wave: ./build/${SRC}.bin wave-model
 	./obj_dir/Voirv $<
 
+vsh: wave
+	vsh "run_script .vsh_start"
 
 clean:
 	rm -rf obj_dir dump.* ./build *.vcd *.log .vsh_*
