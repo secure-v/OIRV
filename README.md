@@ -17,6 +17,9 @@ make start ARCH=rv64i SRC=hello
 
 ## 编译仿真模型、以 rv64i 架构编译 hello 源程序运行，并导出仿真波形文件
 make wave ARCH=rv64i SRC=hello
+
+## 编译仿真模型、以 rv64i 架构编译 hello 源程序运行，导出仿真波形文件后用 vsh 显示波形
+make vsh ARCH=rv64i SRC=hello
 ```
 ![仿真运行 hello 程序](./image/hello.png)
 
