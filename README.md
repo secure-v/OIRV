@@ -32,6 +32,10 @@ make vsh ARCH=rv64i SRC=hello
 ![通过 vsh 显示仿真波形](./image/vsh_wave.png)
 
 3. 编译参数：
+- DUAL_ISSUE_FLAG：定义该参数为 DUAL_ISSUE_OFF 时，配置为单发射；
+```shell
+make start ARCH=rv64imac SRC=hello DUAL_ISSUE_FLAG=DUAL_ISSUE_OFF
+```
 - ARCH：指定编译源程序时采用的架构，同时它也会用于指定编译 RTL 仿真模型时采用的架构（RV32 / RV64）；
 - FLAG：指定编译源程序时的 CFLAGS；
 - SRC：指定源程序的名称（不需要添加后缀，如 SRC=addi、SRC=fdiv 等）；
