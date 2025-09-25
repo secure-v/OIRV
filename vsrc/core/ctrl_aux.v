@@ -37,6 +37,9 @@ module ctrl_aux (
 	wire load_or_mul = op_type_from_ctrl[`OP_MUL_INDEX] || (ctrl_sig_from_ctrl[`IS_LOAD_OR_STORE_INSTR_INDEX] == `IS_LOAD_OR_STORE_INSTR);
 
 	always @ (*) begin
+	`ifdef DUAL_ISSUE_OFF
+		aux_can_issue = !`AUX_CAN_ISSUE;
+	`else
 		if (is_hazard && load_or_mul)
 			aux_can_issue = !`AUX_CAN_ISSUE;
 		// else if(instr_addr_dc_aux[2:0] == 3'b000)
@@ -53,6 +56,7 @@ module ctrl_aux (
 	`endif
 		else
 			aux_can_issue = ((opcode == 7'b0110111) || (opcode == 7'b0010111) || ((opcode == 7'b0010011) && ((func3 == 3'b000) || (func3 == 3'b010) || (func3 == 3'b011) || (func3 == 3'b100) || (func3 == 3'b110) || (func3 == 3'b111))) || ((opcode == 7'b0010011) && (func3 == 3'b001) && (func7 == 7'b0000000)) || ((opcode == 7'b0010011) && (func3 == 3'b101) && (func7 == 7'b0000000)) || ((opcode == 7'b0010011) && (func3 == 3'b101) && (func7 == 7'b0100000)) || ((opcode == 7'b0110011) && (func3 == 3'b000) && (func7 == 7'b0000000)) || ((opcode == 7'b0110011) && (func3 == 3'b000) && (func7 == 7'b0100000)) || ((opcode == 7'b0110011) && (func3 == 3'b001) && (func7 == 7'b0000000)) || ((opcode == 7'b0110011) && (func3 == 3'b010) && (func7 == 7'b0000000)) || ((opcode == 7'b0110011) && (func3 == 3'b011) && (func7 == 7'b0000000)) || ((opcode == 7'b0110011) && (func3 == 3'b100) && (func7 == 7'b0000000)) || ((opcode == 7'b0110011) && (func3 == 3'b101) && (func7 == 7'b0000000)) || ((opcode == 7'b0110011) && (func3 == 3'b101) && (func7 == 7'b0100000)) || ((opcode == 7'b0110011) && (func3 == 3'b110) && (func7 == 7'b0000000)) || ((opcode == 7'b0110011) && (func3 == 3'b111) && (func7 == 7'b0000000)) || ((instr[15:13] == 3'b000) && (instr[1:0] == 2'b00)) || ((instr[15:13] == 3'b000) && (instr[1:0] == 2'b01)) || ((instr[15:13] == 3'b001) && (instr[1:0] == 2'b01)) || ((instr[15:13] == 3'b010) && (instr[1:0] == 2'b01) && (instr[11:7] != 5'b00000)) || ((instr[15:13] == 3'b011) && (instr[1:0] == 2'b01)) || ((instr[15:13] == 3'b100) && (instr[11:10] == 2'b00) && (instr[1:0] == 2'b01)) || ((instr[15:13] == 3'b100) && (instr[11:10] == 2'b01) && (instr[1:0] == 2'b01)) || ((instr[15:13] == 3'b100) && (instr[11:10] == 2'b10) && (instr[1:0] == 2'b01)) || ((instr[15:10] == 6'b100011) && (instr[1:0] == 2'b01)) || ((instr[15:10] == 6'b100111) && (instr[6] == 1'b0) && (instr[1:0] == 2'b01)) || ((instr[15:13] == 3'b000) && (instr[1:0] == 2'b10) && (instr[11:7] != 5'b00000)) || ((instr[15:13] == 3'b100) && (instr[11:7] != 5'd0) && (instr[6:2] != 5'd0) && (instr[1:0] == 2'b10)))? `AUX_CAN_ISSUE : !`AUX_CAN_ISSUE;
+	`endif
 	end
 
     // ((instr[15:13] == 3'b000) && (instr[1:0] == 2'b00)) // c.addi4spn
